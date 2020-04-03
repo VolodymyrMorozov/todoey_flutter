@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoeyflutter/widgets/add_task_widget.dart';
 import 'package:todoeyflutter/widgets/tasks_list.dart';
 
 class TesksScreen extends StatelessWidget {
@@ -55,7 +56,19 @@ class TesksScreen extends StatelessWidget {
             ),
           ]),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.vertical),
+                child: AddTaskWidget(),
+              ),
+            ),
+          );
+        },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
       ),
