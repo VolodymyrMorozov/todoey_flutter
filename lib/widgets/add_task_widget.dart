@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoeyflutter/models/task_data.dart';
 
 class AddTaskWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String name;
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -22,6 +25,9 @@ class AddTaskWidget extends StatelessWidget {
               height: 10.0,
             ),
             TextField(
+              onChanged: (value) {
+                name = value;
+              },
               autofocus: true,
               decoration: InputDecoration(
                 enabledBorder: new UnderlineInputBorder(
@@ -35,7 +41,8 @@ class AddTaskWidget extends StatelessWidget {
             ),
             FlatButton(
                 onPressed: () {
-                  print(2);
+                  Provider.of<TaskData>(context, listen: false).addTask(name);
+                  Navigator.pop(context);
                 },
                 color: Colors.lightBlueAccent,
                 child: Text(
